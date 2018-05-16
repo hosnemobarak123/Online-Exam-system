@@ -1,0 +1,471 @@
+<html>
+<head>
+<title>Student login</title>
+<script language="JavaScript">
+function verify(){
+var flag=0;
+for(i=0;i<=2;i++){
+if(document.forms[0].elements[i].value==""){
+alert("Please fill in the "+ document.forms[0].elements[i].name +" field");
+document.forms[0].elements[i].focus();
+flag=1;
+break;
+}
+}
+if(flag==1){
+return(false);
+}
+return(true);
+}
+function Abort(){
+history.back();
+}
+</script></head>
+<BODY bottomMargin=0 aLink=#f0f0f0 leftMargin=90 rightMargin=90 link=#f0f0f0
+topMargin=5 bgColor=#98afc7 vLink=#f0f0f0 >
+<TABLE border=10 cellSpacing=0 cellPadding=0 width="100%" bgColor=#4e9258>
+<TR>
+<TD vAlign=top align=middle>
+<TABLE bgcolor=#f0f0f0 border=0 cellSpacing=0
+cellPadding=0 width=140 align=center>
+<TR>
+<TD height=100 width="25%"><IMG border=0 alt=""
+src="logo.gif" width=250
+height=100>&nbsp;</TD>
+<TD height=100 width="50%"><IMG border=0 alt=""
+src="logo2.jpg" width=580
+height=100>
+</TD>
+<TD height=100 width="25%"><IMG border=0 alt=""
+src="logo.gif" width=250
+height=100>&nbsp;</TD>
+</tr>
+<TABLE border=1 cellSpacing=10 cellPadding=0 width="100%"
+bgColor=#54c571>
+<TR>
+<TD bgColor=#e56e94 vAlign=top align=middle><FONT color=#000000
+size=3 face=Arial><B><A
+href="index.jsp">HOME</A></B></FONT></TD>
+<TD bgColor=#e56e94 vAlign=top align=middle><FONT size=3
+face=Arial><A
+href="const.html"><B>Exam list</B></A></FONT></TD>
+<TD bgColor=#e56e94 vAlign=top align=middle><FONT size=3
+face=Arial><B><A href="institute.html">Institute
+</A></B></FONT></TD>
+<TD bgColor=#e56e94 vAlign=top align=middle><FONT size=3
+face=Arial><B><A
+href="student.html">Student</A></B></FONT></TD>
+<TD bgColor=#e56e94 vAlign=top align=middle><FONT size=3
+face=Arial><B><A
+href=""></A></B></FONT></TD>
+<TD bgColor=#e56e94 vAlign=top align=middle><FONT size=3
+face=Arial><B><A href="about_us.html">About Us
+</A></B></FONT></TD>
+<TD bgColor=#e56e94 vAlign=top align=middle><FONT size=3
+face=Arial><B><A
+href="FAQ.html">Help/FAQ</A></B></FONT></TD>
+<TD bgColor=#e56e94 vAlign=top align=middle><FONT size=3
+face=Arial><A
+href="contact.html"><B>Contact us</B></A></FONT></TD>
+</TR></TABLE>
+<TABLE border=1 cellSpacing=0 cellPadding=0 width="100%">
+<TR>
+<TD bgColor=#617c58><B><FONT color=#ff7000 size=3 face=Tahoma
+center>
+<MARQUEE onmouseover=this.stop()
+onmouseout=this.start()>Take a..<FONT color=#cf000 size=2
+face=Tahoma><A
+href="http://www.seccampus.com/secalumni/alumni.html">
+Sample Online Test</A></FONT></MARQUEE></FONT></B></TD></TR></TABLE>
+<FORM action="afterslogin0.jsp" method="post" onSubmit="return verify()">
+<TABLE border=0 cellSpacing=0 cellPadding=10 width="100%" bgcolor=#ffffff align=center>
+<tbody>
+<tr>
+<td width=40%><img src="login3.jpg" width=200 height=150></td>
+<td><font size=5><b>Student Login Form</b></font></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+</tr>
+<td align=right><b><font color=#df2332 size=3>Student ID:</font></b></td>
+<td><input name=StudentID type=text></td>
+</tr>
+<tr>
+<td align=right><b><font color=#df2332 size=3>Student Name:</font></b></td>
+<td><input name=StudentName type=text></td>
+</tr>
+<tr>
+<td align=right><b><font color=#df2332 size=3>Institute Code:</font></b></td>
+<td><input name=InstituteCode type=password></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td align=right><Input type=submit value=Submit></td>
+<td><Input type=button value=Abort onClick="Abort()"></td>
+</tr>
+</tbody>
+</table>
+</form>
+</body>
+</html>
+<html>
+<head>
+<title>Exam</title>
+<script language="JavaScript">
+function submitform()
+{
+document.forms["myform"].submit();
+}
+</script>
+</head>
+<BODY bottomMargin=0 leftMargin=90 rightMargin=90
+topMargin=5 bgColor=#98afc7 ALINK="blue" LINK="blue" VLINK="blue" >
+<TABLE border=10 cellSpacing=0 cellPadding=0 width="100%" bgColor=#4e9258>
+<TR>
+<TD vAlign=top align=middle>
+<TABLE bgcolor=#f0f0f0 border=0 cellSpacing=0
+cellPadding=0 width=140 align=center>
+<TR>
+<TD height=100 width="25%"><IMG border=0 alt=""
+src="logo.gif" width=250
+height=100>&nbsp;</TD>
+<TD height=100 width="50%"><IMG border=0 alt=""
+src="logo2.jpg" width=580
+height=100>
+</TD>
+<TD height=100 width="25%"><IMG border=0 alt=""
+src="logo.gif" width=250
+height=100>&nbsp;</TD>
+</TR>
+<TABLE border=10 cellSpacing=10 cellPadding=0 width="100%"
+bgColor=#54c571>
+<TR align="right">
+<%
+String sname=(String)session.getAttribute("sname");
+String sid=(String)session.getAttribute("sid");
+int currentq=cq.intValue();
+out.println("<TD bgColor=#e56e94 vAlign=top align=middle width='60%'>Hi "+sname+"<FONT
+color='white' size=2 face=Tahoma> (student id="+sid+")</FONT></td>");
+Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+Connection c=DriverManager.getConnection("jdbc:odbc:mydsn");
+Statement s=c.createStatement();
+String tbl=iname+"qtable";
+String tbl2=iname+"edetails";
+int cqid=qid[currentq];
+ResultSet rs=s.executeQuery("select * from "+tbl+" where QID="+cqid);
+rs.next();
+String ques=rs.getString(2);
+String opa=rs.getString(3);
+String opb=rs.getString(4);
+String opc=rs.getString(5);
+String opd=rs.getString(6);
+rs=s.executeQuery("select * from "+tbl2);
+rs.next();
+int nques=(int)nq;
+%>
+<TD bgColor=#e56e94 vAlign=top align=middle width="10%"><FONT size=3
+face=Arial><B><A
+href="logout.jsp">Logout</A></B></FONT></TD></TR></TABLE>
+<TABLE border=10 cellSpacing=10 cellPadding=0 width="100%"
+bgColor=#54c571>
+<TR>
+<TD bgColor=#e56e94 vAlign=top align=middle width="20%"><FONT color=#000000
+size=3 face=Arial><B>
+<%if(currentq==0)
+out.println("<font color=grey>First</font>");
+else
+out.println("<A href='fir.jsp'>First</A>");
+%>
+</B></FONT></TD>
+<TD bgColor=#e56e94 vAlign=top align=middle width="20%"><FONT size=3
+face=Arial><B>
+<%if(currentq==0)
+out.println("<font color=grey>Previous</font>");
+else
+out.println("<A href='prev.jsp'>Previous</A>");
+%>
+</B></FONT>
+</TD>
+<TD bgColor=#e56e94 vAlign=top align=middle width="20%"><FONT size=3
+face=Arial><B>
+<%
+if(currentq==(nques-1))
+out.println("<font color=grey>Next</font>");
+else
+out.println("<A href='next.jsp'>Next</A>");
+%>
+</B></FONT></TD>
+<TD bgColor=#e56e94 vAlign=top align=middle width="20%"><FONT size=3
+face=Arial><B>
+<%
+if(currentq==(nques-1))
+out.println("<font color=grey>Last</font>");
+else
+out.println("<A href='last.jsp'>Last</A>");
+%>
+</B></FONT></TD>
+<TD bgColor=#e56e94 vAlign=top align=middle width="20%"><FONT size=3
+face=Arial><B><A href="submit2.jsp">Submit
+</A></B></FONT></TD>
+</TR></TABLE>
+<TABLE border=0 cellSpacing=0 cellPadding=10 width="100%" bgcolor="white">
+<TR>
+<TD vAlign=top align=left>
+<P><BR>
+<%@page import="java.sql.*"%>
+<%
+out.println("<form action='submit.jsp' id='myform'>");
+%>
+<table width="100%">
+<tr width="100%">
+<td><font color="black" size="4">
+<%
+out.println("Q."+(currentq+1));
+out.println(ques);
+%>
+</font> </td>
+</tr>
+<tr><td>&nbsp;</td></tr>
+<tr bgcolor="pink" width="100%">
+<td><font color="blue" size="4">
+<%
+if(ans[currentq].equals("A"))
+{
+out.println("<input type='radio' name='r1' value='A' CHECKED onClick='submitform()'>");
+}
+else
+out.println("<input type='radio' name='r1' value='A' onClick='submitform()'>");
+out.println(opa);
+%>
+</font> </td>
+</tr>
+<tr><td>&nbsp;</td></tr>
+<tr bgcolor="pink" width="100%">
+<td><font color="blue" size="4">
+<%
+if(ans[currentq].equals("B"))
+{
+out.println("<input type='radio' name='r1' value='B' CHECKED onClick='submitform()'>");
+}
+else
+out.println("<input type='radio' name='r1' value='B' onClick='submitform()'>");
+out.println(opb);%>
+</font> </td>
+</tr>
+<tr><td>&nbsp;</td></tr>
+<tr bgcolor="pink" width="100%">
+<td><font color="blue" size="4">
+<%
+if(ans[currentq].equals("C"))
+{
+out.println("<input type='radio' name='r1' value='C' CHECKED onClick='submitform()'>");
+}
+else
+out.println("<input type='radio' name='r1' value='C' onClick='submitform()'>");
+out.println(opc);
+%>
+</font> </td>
+</tr>
+<tr><td>&nbsp;</td></tr>
+<tr bgcolor="pink" width="100%">
+<td><font color="blue" size="4">
+<%
+if(ans[currentq].equals("D"))
+{
+out.println("<input type='radio' name='r1' value='D' CHECKED onClick='submitform()'>");
+}
+else
+out.println("<input type='radio' name='r1' value='D' onClick='submitform()'>");
+out.println(opd);%>
+</font> </td>
+</tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+</table>
+</form>
+<TABLE border=10 cellSpacing=10 cellPadding=0 width="100%"
+bgColor=#54c571>
+<TR>
+<TD bgColor=#e56e94 vAlign=top align=middle width="20%"><FONT color=#000000
+size=3 face=Arial><B>
+<%if(currentq==0)
+out.println("<font color=grey>First</font>");
+else
+out.println("<A href='fir.jsp'>First</A>");
+%>
+</B></FONT></TD>
+<TD bgColor=#e56e94 vAlign=top align=middle width="20%"><FONT size=3
+face=Arial><B>
+<%if(currentq==0)
+out.println("<font color=grey>Previous</font>");
+else
+out.println("<A href='prev.jsp'>Previous</A>");
+%>
+</B></FONT>
+</TD>
+<TD bgColor=#e56e94 vAlign=top align=middle width="20%"><FONT size=3
+face=Arial><B>
+<%
+if(currentq==(nques-1))
+out.println("<font color=grey>Next</font>");
+else
+out.println("<A href='next.jsp'>Next</A>");
+%>
+</B></FONT></TD>
+<TD bgColor=#e56e94 vAlign=top align=middle width="20%"><FONT size=3
+face=Arial><B>
+<%
+if(currentq==(nques-1))
+out.println("<font color=grey>Last</font>");
+else
+out.println("<A href='last.jsp'>Last</A>");
+%>
+</B></FONT></TD>
+<TD bgColor=#e56e94 vAlign=top align=middle width="20%"><FONT size=3
+face=Arial><B><A href="submit2.jsp">Submit
+</A></B></FONT></TD>
+</TR>
+</TABLE>
+</TABLE>
+</TABLE>
+</body>
+</html>
+</html>
+
+<html>
+<head>
+<title>JSP Page</title>
+</head>
+<BODY bottomMargin=0 leftMargin=90 rightMargin=90
+topMargin=5 bgColor=#98afc7 >
+<TABLE border=10 cellSpacing=0 cellPadding=0 width="100%" bgColor=#4e9258>
+<TR>
+<TD vAlign=top align=middle>
+<TABLE bgcolor=#f0f0f0 border=0 cellSpacing=0
+cellPadding=0 width=140 align=center>
+<TR>
+<TD height=100 width="25%"><IMG border=0 alt=""
+src="logo.gif" width=250
+height=100>&nbsp;</TD>
+<TD height=100 width="50%"><IMG border=0 alt=""
+src="logo2.jpg" width=580
+height=100>
+</TD>
+<TD height=100 width="25%"><IMG border=0 alt=""
+src="logo.gif" width=250
+height=100>&nbsp;</TD>
+</TR>
+<TABLE border=10 cellSpacing=10 cellPadding=0 width="100%"
+bgColor=#54c571>
+<TR align="right">
+<%
+String sname=(String)session.getAttribute("sname");
+String sid=(String)session.getAttribute("sid");
+String iname=(String)session.getAttribute("iname");
+out.println("<TD bgColor=#e56e94 vAlign=top align=middle width='60%'>Hi "+sname+"<FONT
+color='white' size=2 face=Tahoma> (student id="+sid+")</FONT></td>");
+%>
+<TD bgColor=#e56e94 vAlign=top align=middle width="10%"><FONT size=3
+face=Arial><B><A
+href="logout.jsp">Logout</A></B></FONT></TD></TR></TABLE>
+<TABLE border=0 cellSpacing=0 cellPadding=10 width="100%" bgcolor="white">
+<TR>
+<TD vAlign=top align=left>
+<P><BR><FONT color=#ff0000 size=4 face="Lucida Calligraphy"><B>
+<center> <H1>RESULT</H1></center></B></FONT>
+<%@page import="java.sql.*"%>
+<%
+Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+Connection c=DriverManager.getConnection("jdbc:odbc:mydsn");
+Statement s=c.createStatement();
+String tbl1=iname+"edetails";
+String tbl3=iname+"slist";
+ResultSet rs1=s.executeQuery("select * from "+tbl1);
+rs1.next();
+String ename=rs1.getString(2);
+String passmark=rs1.getString(4);
+double pass=Double.parseDouble(passmark);
+String noques=rs1.getString(5);
+double nq=Double.parseDouble(noques);
+int nques=(int)nq;
+String pmarks=rs1.getString(6);
+double positive=Double.parseDouble(pmarks);
+String nmarks=rs1.getString(7);
+double negative=Double.parseDouble(nmarks);
+String[] ans=(String[])session.getAttribute("ans");
+String[] sol=(String[])session.getAttribute("sol");
+int correct=0;
+int incorrect=0;
+int unattempt=0;
+for(int i=0;i<nques;i++)
+{
+if(ans[i].equals(sol[i])){
+correct++;
+}
+else if(ans[i].equals("null"))
+unattempt++;
+else
+incorrect++;
+}
+double marks=correct*positive-incorrect*negative;
+String result;
+if(marks>=pass)
+result="Pass";
+else
+result="Fail";
+s.executeUpdate("update "+tbl3+" set marks="+marks+" where SID="+sid+" and Sname='"+sname+"'");
+s.executeUpdate("update "+tbl3+" set result='"+result+"' where SID="+sid+" and Sname='"+sname+"'");
+%>
+<table width="100%">
+<tr bgcolor="yellow" width="100%">
+<td align="middle"><font color="black" size="4"><b>Number of Correct Questions</b></font>
+</td>
+<td align="middle"><font color="blue" size="4">
+<%out.println(correct);
+%>
+</font> </td>
+</tr>
+<tr></tr>
+<tr bgcolor="pink" width="100%">
+<td align="middle"><font color="black" size="4"><b>Number of Incorrect Questions</b></font>
+</td>
+<td align="middle"><font color="blue" size="4">
+<%out.println(incorrect);
+%>
+</font> </td>
+</tr>
+<tr></tr>
+<tr bgcolor="yellow" width="100%">
+<td align="middle"><font color="black" size="4"><b>Number of Unattempted
+Questions</b></font> </td>
+<td align="middle"><font color="blue" size="4">
+<%out.println(unattempt);
+%>
+</font> </td>
+</tr>
+<tr></tr>
+<tr bgcolor="pink" width="100%">
+<td align="middle"><font color="black" size="4"><b>Marks</b></font> </td>
+<td align="middle"><font color="blue" size="4">
+<%out.println(marks);
+%>
+</font> </td>
+</tr>
+<tr></tr>
+<tr bgcolor="yellow" width="100%">
+<td align="middle"><font color="black" size="4"><b>Result</b></font> </td>
+<td align="middle"><font color="blue" size="4">
+<%out.println(result);
+%>
+</font> </td>
+</tr>
+<tr></tr>
+</table> </TABLE>
+</TABLE>
+</body>
+</html>
+
+
+
